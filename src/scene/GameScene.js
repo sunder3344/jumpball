@@ -17,8 +17,8 @@ var MainLayer = cc.Scene.extend({
 		
 		//安置关卡
 		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
-		this._roundLayer.x = winSize.width / 2;
-		this._roundLayer.y = winSize.height / 2 + 50;
+		this._roundLayer.x = winSize.width / 2 - (this._roundLayer.width / 2);
+		this._roundLayer.y = winSize.height / 2;
 		this.addChild(this._roundLayer);
 		this._roundLayer.startRotate();
 		

@@ -7,6 +7,8 @@ var RoundLayer1 = cc.Layer.extend({
 	
 	ctor:function() {
 		this._super();
+		//this._super(cc.color(255, 255, 255, 255));
+		this.setContentSize(200, 200);			//设置层大小
 		this.init();
 		return true;
 	},
@@ -15,20 +17,20 @@ var RoundLayer1 = cc.Layer.extend({
 		var winSize = cc.director.getWinSize();
 		//线段1
 		this._obs1 = new cc.Sprite(res.LINE_PNG);
-		this._obs1.x = 0 - Constants.GAP_WIDTH;
-		this._obs1.y = winSize.height / 10;
+		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH;
+		this._obs1.y = this.y + this.height / 2;
 		this.addChild(this._obs1);
 		
 		//线段2
 		this._obs2 = new cc.Sprite(res.LINE_PNG);
-		this._obs2.x = Constants.GAP_WIDTH;
-		this._obs2.y = winSize.height / 10;;
+		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
+		this._obs2.y = this.y + this.height / 2;
 		this.addChild(this._obs2);
-		cc.log(this);
 		
 		//设置锚点
-		this.anchorX = 0;
-		this.anchorY = 0.05;
+		//this.anchorX = 0.5;
+		//this.anchorY = 0.5;
+		this.setAnchorPoint(cc.p(0.5, 0.5));
 	},
 	
 	//开始旋转
