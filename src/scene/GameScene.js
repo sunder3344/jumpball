@@ -1,7 +1,10 @@
 var MainLayer = cc.Scene.extend({
 	i:0,
+	_name:"mainLayer",
 	_flag:0,
 	_ball:null,
+	_round:0,
+	_roundLayer:null,
 	
 	ctor:function() {
 		this._super();
@@ -9,14 +12,23 @@ var MainLayer = cc.Scene.extend({
 		//弹射的小球
 		this._ball = BallSprite.create();
 		this._ball.x = winSize.width / 2;
-		this._ball.y = winSize.height / 4;
+		this._ball.y = winSize.height / 7;
 		this.addChild(this._ball);
+		
+		//安置关卡
+		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
+		this._roundLayer.x = winSize.width / 2;
+		this._roundLayer.y = winSize.height / 2 + 50;
+		this.addChild(this._roundLayer);
+		this._roundLayer.startRotate();
+		
 		//this._sdk_init();
 		
 		if ("touches" in cc.sys.capabilities) {
 			cc.eventManager.addListener({
 				event: cc.EventListener.TOUCH_ONE_BY_ONE,
-				onTouchBegan: this._onMainTouchBegan.bind(this)
+				onTouchBegan: this._onMainTouchBegan.bind(this),
+				onTouchEnded: this._onMainTouchEnded.bind(this)
 			}, this);
 		} else {
 			cc.eventManager.addListener({
@@ -54,9 +66,19 @@ var MainLayer = cc.Scene.extend({
 	
 	//手指开始
 	_onMainTouchBegan:function(touch, event) {
+		this._flag = 0;
 		var pos = touch.getLocation();
-		cc.log(pos.x + "--" + pos.y);
+		var winSize = cc.director.getWinSize();
+		var action = cc.jumpTo(Constants.BALL_JUMP_SECONDS, 
+				cc.p(winSize.width/2, this._ball.y + Constants.BALL_JUMP_DISTANCE), 
+				Constants.BALL_JUMP_STEP, 1);
+		this._ball.runAction(action);
 		return true;
+	},
+	
+	//手指放开
+	_onMainTouchEnded:function(touch, event) {
+		this._flag = 1;
 	},
 	
 	//鼠标开始
@@ -70,6 +92,7 @@ var MainLayer = cc.Scene.extend({
 		this._ball.runAction(action);
 	},
 	
+	//鼠标结束
 	_onMainMouseUp:function() {
 		this._flag = 1;
 	},
@@ -138,11 +161,11 @@ var GameScene = cc.Scene.extend({
 		var winSize = cc.director.getWinSize();
 		if (this.layer._ball.y < 0 - 10) {
 			//显示错误提示框
-			cc.log("fail");
+			//cc.log("fail");
 		}
 		if (this.layer._ball.y >= this.layer.height) {
 			//显示成功提示框
-			cc.log("success");
+			//cc.log("success");
 		}
 	}
 });
