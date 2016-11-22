@@ -8,4 +8,6 @@ var Constants = {
 	BALL_FALL_SECONDS : 0.3,
 	GAP_WIDTH : 85,
 	GAP_HEIGHT : 85,
+	
+	PHYSICS_DEBUG_NODE_SHOW : true
 }
