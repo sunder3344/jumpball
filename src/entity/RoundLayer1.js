@@ -35,8 +35,9 @@ var RoundLayer1 = cc.Layer.extend({
 	
 	//开始旋转
 	startRotate:function() {
-		var actionBy = new cc.RotateBy(4, 360);
-		this.runAction(actionBy).repeatForever();
+		var actionBy = new cc.RotateBy(3, 360);
+		var seq = cc.sequence(actionBy);
+		this.runAction(seq.repeatForever());
 	}
 });
 
