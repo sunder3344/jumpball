@@ -17,20 +17,6 @@ var MainLayer = cc.Scene.extend({
 		this._ball.x = winSize.width / 2;
 		this._ball.y = winSize.height / 7;
 		this.addChild(this._ball);
-		/*var radius = 18;
-		var body = new cp.Body(1, cp.momentForCircle(1, 0, radius, cp.v(0, 0)));
-		body.setPos(cc.p(winSize.width / 2, winSize.height / 7));
-		this.space.addBody(body);
-		var shape = new cp.CircleShape(body, radius, cp.v(0, 0));
-        shape.setElasticity(0.5);
-        shape.setFriction(0.5);
-		shape.collision_type = 1;
-		this.space.addShape(shape);
-		this._ball = new cc.PhysicsSprite(res.BALL_SPRITE);
-		this._ball.scale = 0.15;
-		this._ball.setBody(body);
-		this._ball.setPosition(cc.p(winSize.width / 2, winSize.height / 7));
-		this.addChild(this._ball);*/
 		
 		//安置关卡
 		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
@@ -70,7 +56,7 @@ var MainLayer = cc.Scene.extend({
 		var staticBody = this.space.staticBody;
 		
 		//设置空间边界(此处没有空间边界)
-		/*var walls = [new cp.SegmentShape(staticBody, cp.v(0, 0),
+		var walls = [new cp.SegmentShape(staticBody, cp.v(0, 0),
 										cp.v(winSize.width/2, 0), 0),
 					 new cp.SegmentShape(staticBody, cp.v(0, winSize.height),
 										cp.v(winSize.width, winSize.height), 0),
@@ -85,7 +71,7 @@ var MainLayer = cc.Scene.extend({
 			shape.setFriction(1);
 			shape.collision_type = i;
 			this.space.addStaticShape(shape);
-		}*/
+		}
 	},
 	
 	setupDebugNode:function() {
@@ -201,20 +187,29 @@ var MainLayer = cc.Scene.extend({
 	onCollisionCheck:function() {
 		cc.sys.dumpRoot();
         cc.sys.garbageCollect();
-		cc.eventManager.addListener({
-			event: cc.EventListener.TOUCH_ONE_BY_ONE,
-			onTouchBegan: this.onTouchBegan
-		}, this);
 		
 		//添加碰撞检测事件
 		//important！如果有很多物体，此处需要遍历
 		//小球的collision_type始终是1,与其他的遍历
-		this.space.addCollisionHandler(1, 2, 
+		this.space.setDefaultCollisionHandler(
+            this.collisionBegin.bind(this),
+            this.collisionPre.bind(this),
+            this.collisionPost.bind(this),
+            this.collisionSeparate.bind(this)
+        );
+		/*this.space.addCollisionHandler(1, 2, 
 			this.collisionBegin.bind(this),
 			this.collisionPre.bind(this),
 			this.collisionPost.bind(this),
 			this.collisionSeparate.bind(this)
 		);
+		
+		this.space.addCollisionHandler(1, 3, 
+			this.collisionBegin.bind(this),
+			this.collisionPre.bind(this),
+			this.collisionPost.bind(this),
+			this.collisionSeparate.bind(this)
+		);*/
 	},
 	
 	//碰撞检测
