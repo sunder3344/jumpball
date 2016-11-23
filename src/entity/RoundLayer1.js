@@ -1,5 +1,5 @@
 //第一关，直线旋转
-var RoundLayer1 = cc.Layer.extend({
+var RoundLayer1 = cc.LayerColor.extend({
 	_name:"round1",
 	_obs1:null,
 	_obs2:null,
@@ -8,7 +8,7 @@ var RoundLayer1 = cc.Layer.extend({
 	
 	ctor:function() {
 		this._super();
-		//this._super(cc.color(255, 255, 255, 255));
+		this._super(cc.color(255, 255, 255, 255));
 		this.setContentSize(200, 200);			//设置层大小
 		//this._init();
 		return true;
@@ -26,7 +26,8 @@ var RoundLayer1 = cc.Layer.extend({
 		this._obs1.y = this.y + this.height / 2;
 		this.addChild(this._obs1);*/
 		var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		//body.setPos(cc.p(this.x + this.width / 2 - Constants.GAP_WIDTH, this.y + this.height / 2));
+		body.setPos(cc.p(0, 0));
+		//body.setAngVel(1.3);
 		gameScene.space.addBody(body);
 		
 		var shape = new cp.BoxShape(body, 123, 19);
@@ -40,6 +41,7 @@ var RoundLayer1 = cc.Layer.extend({
 		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH;
 		this._obs1.y = this.y + this.height / 2;
 		this.addChild(this._obs1);
+		//gameScene.addChild(this._obs1);
 		
 		//线段2
 		/*this._obs2 = new cc.Sprite(res.LINE_PNG);
@@ -47,7 +49,7 @@ var RoundLayer1 = cc.Layer.extend({
 		this._obs2.y = this.y + this.height / 2;
 		this.addChild(this._obs2);*/
 		var body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
+		body2.setPos(cc.p(0, 0));
 		gameScene.space.addBody(body2);
 		
 		var shape2 = new cp.BoxShape(body2, 123, 19);
@@ -61,13 +63,12 @@ var RoundLayer1 = cc.Layer.extend({
 		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
 		this._obs2.y = this.y + this.height / 2;
 		this.addChild(this._obs2);
+		//gameScene.addChild(this._obs2);
 		
 		//设置锚点
 		//this.anchorX = 0.5;
 		//this.anchorY = 0.5;
 		this.setAnchorPoint(cc.p(0.5, 0.5));
-		
-		//设置chipmunk碰撞参数
 	},
 	
 	//开始旋转

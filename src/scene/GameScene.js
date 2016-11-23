@@ -20,11 +20,31 @@ var MainLayer = cc.Scene.extend({
 		
 		//安置关卡
 		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
-		this._roundLayer._init(this);
 		this._roundLayer.x = winSize.width / 2 - (this._roundLayer.width / 2);
 		this._roundLayer.y = winSize.height / 2;
+		this._roundLayer._init(this);
 		this.addChild(this._roundLayer);
 		this._roundLayer.startRotate();
+		
+		/*var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
+		body.setAngVel(1.3);			//刚体旋转
+		body.setPos(cc.p(0,0));
+		this.space.addBody(body);
+		
+		var shape = new cp.BoxShape(body, 123, 19);
+		shape.setElasticity(0.5);
+		shape.setFriction(0.5);
+		shape.collision_type = 2;
+		this.space.addShape(shape);
+		//创建物理引擎精灵对象
+		var obs = new cc.PhysicsSprite(res.LINE_PNG);
+		obs.setBody(body);
+		obs.x = this.x + this.width / 2;
+		obs.y = this.y + this.height / 2;
+		this.addChild(obs);
+		var actionBy = new cc.RotateBy(3, 360);
+		var seq = cc.sequence(actionBy);
+		obs.runAction(cc.sequence(new cc.RotateBy(3, 360)).repeatForever());*/
 		
 		//this._sdk_init();
 		this.onCollisionCheck();
@@ -43,6 +63,13 @@ var MainLayer = cc.Scene.extend({
 			}, this);
 		}
 		this.scheduleUpdate();
+		return true;
+	},
+	
+	onEnter:function() {
+		this._super();
+		cc.sys.dumpRoot();
+        cc.sys.garbageCollect();
 		return true;
 	},
 	
@@ -184,10 +211,7 @@ var MainLayer = cc.Scene.extend({
 	},
 	
 	//碰撞检测
-	onCollisionCheck:function() {
-		cc.sys.dumpRoot();
-        cc.sys.garbageCollect();
-		
+	onCollisionCheck:function() {		
 		//添加碰撞检测事件
 		//important！如果有很多物体，此处需要遍历
 		//小球的collision_type始终是1,与其他的遍历
