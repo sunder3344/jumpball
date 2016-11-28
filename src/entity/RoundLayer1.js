@@ -22,7 +22,7 @@ var RoundLayer1 = cc.Layer.extend({
 		var winSize = cc.director.getWinSize();
 		//线段1
 		var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		//body.setAngVel(1.0);
+		body.setAngVel(1.0);
 		gameScene.space.addBody(body);
 		
 		var shape = new cp.BoxShape(body, 123, 19);
@@ -40,7 +40,7 @@ var RoundLayer1 = cc.Layer.extend({
 		//线段2
 		var body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
 		body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
-		//body2.setAngVel(1.4);
+		body2.setAngVel(1.4);
 		gameScene.space.addBody(body2);
 		
 		var shape2 = new cp.BoxShape(body2, 123, 19);
