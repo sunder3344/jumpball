@@ -19,12 +19,12 @@ var MainLayer = cc.Scene.extend({
 		this.addChild(this._ball);
 		
 		//安置关卡
-		/*this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
+		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
 		this._roundLayer.x = winSize.width / 2 - (this._roundLayer.width / 2);
 		this._roundLayer.y = winSize.height / 2;
 		this._roundLayer._init(this);
 		this.addChild(this._roundLayer);
-		this._roundLayer.startRotate();*/
+		this._roundLayer.startRotate();
 		
 		/*var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
 		body.setAngVel(1.3);			//刚体旋转
