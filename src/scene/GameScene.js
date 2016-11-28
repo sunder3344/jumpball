@@ -19,12 +19,12 @@ var MainLayer = cc.Scene.extend({
 		this.addChild(this._ball);
 		
 		//安置关卡
-		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
+		/*this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
 		this._roundLayer.x = winSize.width / 2 - (this._roundLayer.width / 2);
 		this._roundLayer.y = winSize.height / 2;
 		this._roundLayer._init(this);
 		this.addChild(this._roundLayer);
-		this._roundLayer.startRotate();
+		this._roundLayer.startRotate();*/
 		
 		/*var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
 		body.setAngVel(1.3);			//刚体旋转
@@ -83,7 +83,7 @@ var MainLayer = cc.Scene.extend({
 		var staticBody = this.space.staticBody;
 		
 		//设置空间边界(此处没有空间边界)
-		var walls = [new cp.SegmentShape(staticBody, cp.v(0, 0),
+		/*var walls = [new cp.SegmentShape(staticBody, cp.v(0, 0),
 										cp.v(winSize.width/2, 0), 0),
 					 new cp.SegmentShape(staticBody, cp.v(0, winSize.height),
 										cp.v(winSize.width, winSize.height), 0),
@@ -98,7 +98,7 @@ var MainLayer = cc.Scene.extend({
 			shape.setFriction(1);
 			shape.collision_type = i;
 			this.space.addStaticShape(shape);
-		}
+		}*/
 	},
 	
 	setupDebugNode:function() {
@@ -244,9 +244,10 @@ var MainLayer = cc.Scene.extend({
 		var shapeB = shapes[1];
 		var collTypeA = shapeA.collision_type;
 		var collTypeB = shapeB.collision_type;
-		
-		cc.log(collTypeA);
-		cc.log(collTypeB);
+		//有任何的碰撞，游戏失败
+		if (collTypeA >= 1 && collTypeB >= 1) {
+			cc.director.pause();
+		}
 		return true;
 	},
 	

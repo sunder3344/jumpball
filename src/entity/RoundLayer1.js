@@ -1,5 +1,5 @@
 //第一关，直线旋转
-var RoundLayer1 = cc.LayerColor.extend({
+var RoundLayer1 = cc.Layer.extend({
 	_name:"round1",
 	_obs1:null,
 	_obs2:null,
@@ -8,7 +8,7 @@ var RoundLayer1 = cc.LayerColor.extend({
 	
 	ctor:function() {
 		this._super();
-		this._super(cc.color(255, 255, 255, 255));
+		//this._super(cc.color(255, 255, 255, 255));
 		this.setContentSize(293, 19);			//设置层大小
 		//this._init();
 		return true;
@@ -21,13 +21,8 @@ var RoundLayer1 = cc.LayerColor.extend({
 	_init:function(gameScene) {
 		var winSize = cc.director.getWinSize();
 		//线段1
-		/*this._obs1 = new cc.Sprite(res.LINE_PNG);
-		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH;
-		this._obs1.y = this.y + this.height / 2;
-		this.addChild(this._obs1);*/
 		var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		body.setPos(cp.v(this.x + this.width / 2 - Constants.GAP_WIDTH, this.y + this.height / 2));
-		//body.setAngVel(1.3);
+		//body.setAngVel(1.0);
 		gameScene.space.addBody(body);
 		
 		var shape = new cp.BoxShape(body, 123, 19);
@@ -38,19 +33,14 @@ var RoundLayer1 = cc.LayerColor.extend({
 		//创建物理引擎精灵对象
 		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs1.setBody(body);
-		//this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH;
-		//this._obs1.y = this.y + this.height / 2;
-		this._obs1.setPosition(cc.p(this.x + this.width / 2 - Constants.GAP_WIDTH, this.y + this.height / 2));
-		this.addChild(this._obs1);
-		//gameScene.addChild(this._obs1);
+		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH;
+		this._obs1.y = this.y + this.height / 2;
+		gameScene.addChild(this._obs1);
 		
 		//线段2
-		/*this._obs2 = new cc.Sprite(res.LINE_PNG);
-		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
-		this._obs2.y = this.y + this.height / 2;
-		this.addChild(this._obs2);*/
 		var body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
 		body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
+		//body2.setAngVel(1.4);
 		gameScene.space.addBody(body2);
 		
 		var shape2 = new cp.BoxShape(body2, 123, 19);
@@ -61,15 +51,11 @@ var RoundLayer1 = cc.LayerColor.extend({
 		//创建物理引擎精灵对象
 		this._obs2 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs2.setBody(body2);
-		//this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
-		//this._obs2.y = this.y + this.height / 2;
-		this._obs2.setPosition(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
-		this.addChild(this._obs2);
-		//gameScene.addChild(this._obs2);
+		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
+		this._obs2.y = this.y + this.height / 2;
+		gameScene.addChild(this._obs2);
 		
 		//设置锚点
-		//this.anchorX = 0.5;
-		//this.anchorY = 0.5;
 		this.setAnchorPoint(cc.p(0.5, 0.5));
 	},
 	
@@ -77,6 +63,8 @@ var RoundLayer1 = cc.LayerColor.extend({
 	startRotate:function() {
 		var actionBy = new cc.RotateBy(3, 360);
 		var seq = cc.sequence(actionBy);
+		//this._obs1.runAction(seq.repeatForever());
+		//this._obs2.runAction(seq.repeatForever());
 		//this.runAction(seq.repeatForever());
 	}
 });
