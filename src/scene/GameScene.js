@@ -12,6 +12,8 @@ var MainLayer = cc.Scene.extend({
 		this.initPhysics();
 		
 		var winSize = cc.director.getWinSize();
+		this.width = winSize.width;
+		this.height = winSize.height;
 		//弹射的小球
 		this._ball = BallSprite.create(this);
 		this._ball.x = winSize.width / 2;
@@ -167,6 +169,18 @@ var MainLayer = cc.Scene.extend({
 				cc.p(winSize.width/2, this._ball.y - Constants.BALL_FALL_DISTANCE), 
 				-Constants.BALL_FALL_DISTANCE, 1);
 			this._ball.runAction(action);
+			
+			var winSize = cc.director.getWinSize();
+			if (this._ball.y < 0 - 10) {
+				//显示错误提示框
+				cc.log("fail");
+				cc.director.pause();
+			}
+			if (this._ball.y >= this.height) {
+				//显示成功提示框
+				cc.log("success");
+				cc.director.pause();
+			}
 		}
 	},
 	
@@ -271,20 +285,5 @@ var GameScene = cc.Scene.extend({
         this._super();
         this.layer = new MainLayer();
         this.addChild(this.layer);
-		this.scheduleUpdate();
-    },
-	
-	update:function() {
-		var winSize = cc.director.getWinSize();
-		if (this.layer._ball.y < 0 - 10) {
-			//显示错误提示框
-			cc.log("fail");
-			cc.director.pause();
-		}
-		if (this.layer._ball.y >= this.layer.height) {
-			//显示成功提示框
-			cc.log("success");
-			cc.director.pause();
-		}
-	}
+    }
 });

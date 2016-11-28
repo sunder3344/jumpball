@@ -33,7 +33,7 @@ var RoundLayer1 = cc.Layer.extend({
 		//创建物理引擎精灵对象
 		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs1.setBody(body);
-		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH;
+		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH / 2;
 		this._obs1.y = this.y + this.height / 2;
 		gameScene.addChild(this._obs1);
 		
