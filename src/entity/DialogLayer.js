@@ -21,7 +21,7 @@ var DialogLayer = cc.LayerColor.extend({
 		this._exitItem.x = winSize.width / 2;
 		this._exitItem.y = winSize.height / 2;
 		this._retryItem = new cc.MenuItemImage(res.RETRY_PNG, res.RETRY_PNG, this._retry, this);
-		this._retryItem.x = winSize.width / 2 + this._exitItem.width / 2 + 200;
+		this._retryItem.x = winSize.width / 2 + this._exitItem.width / 2 + 150;
 		this._retryItem.y = winSize.height / 2;
 		var menu = new cc.Menu(this._exitItem, this._retryItem);
 		this.addChild(menu);

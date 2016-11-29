@@ -9,7 +9,7 @@ var Constants = {
 	GAP_WIDTH : 85,
 	GAP_HEIGHT : 85,
 	ROUND_FAIL : "很遗憾，闯关失败，再接再厉哦！",
-	ROUND_SUCCESS : "厉害啊，闯关成功，后面还有更难的，不要骄傲哦！",
+	ROUND_SUCCESS : "厉害啊，闯关成功，\n后面还有更难的，\n不要骄傲哦！",
 	
 	PHYSICS_DEBUG_NODE_SHOW : true
 }

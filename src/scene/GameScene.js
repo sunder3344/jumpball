@@ -62,6 +62,7 @@ var MainLayer = cc.Scene.extend({
 			}, this);*/
 			layerListener = cc.EventListener.create({
 				event: cc.EventListener.TOUCH_ONE_BY_ONE,
+				swallowTouches: true,
 				onTouchBegan: this._onMainTouchBegan.bind(this),
 				onTouchEnded: this._onMainTouchEnded.bind(this)
 			});
@@ -73,12 +74,13 @@ var MainLayer = cc.Scene.extend({
 			}, this);*/
 			layerListener = cc.EventListener.create({
 				event: cc.EventListener.MOUSE,
+				swallowTouches: true,
 				onMouseDown: this._onMainMouseDown.bind(this),
 				onMouseUp: this._onMainMouseUp.bind(this)
 			});
-			cc.eventManager.addListener(layerListener, this);
-			this._listener = layerListener;
 		}
+		cc.eventManager.addListener(layerListener, this);
+		this._listener = layerListener;
 		this.scheduleUpdate();
 		return true;
 	},
@@ -133,10 +135,6 @@ var MainLayer = cc.Scene.extend({
 		this._analytics_plugin.setCaptureUncaughtException(true);			//收集应用错误日志
 	},
 	
-	//onAdsResult:function(code, msg) {
-		//cc.log("on ads result.")
-	//},
-	
 	_exit:function() {
 		this._analytics_plugin.stopSession();
 		cc.director.end();
@@ -163,7 +161,6 @@ var MainLayer = cc.Scene.extend({
 	_onMainMouseDown:function(event) {
 		this._flag = 0;
 		var pos = event.getLocation();
-		cc.log("1111111111111111");
 		var winSize = cc.director.getWinSize();
 		var action = cc.jumpTo(Constants.BALL_JUMP_SECONDS, 
 				cc.p(winSize.width/2, this._ball.y + Constants.BALL_JUMP_DISTANCE), 
@@ -179,7 +176,6 @@ var MainLayer = cc.Scene.extend({
 	update:function() {
 		var timeStep = 0.07;
 		this.space.step(timeStep);
-		cc.log("update");
 		if (this._flag == 1) {
 			var winSize = cc.director.getWinSize();
 			var action = cc.jumpTo(Constants.BALL_FALL_SECONDS, 
@@ -276,7 +272,6 @@ var MainLayer = cc.Scene.extend({
 	
 	//碰撞检测
 	collisionBegin:function(arbiter, space) {
-		//cc.log("collision began");
 		var shapes = arbiter.getShapes();
 		var shapeA = shapes[0];
 		var shapeB = shapes[1];
@@ -293,7 +288,6 @@ var MainLayer = cc.Scene.extend({
 	},
 	
 	collisionPre:function(arbiter, space) {
-		//cc.log("collision Pre");
 		return true;
 	},
 	
