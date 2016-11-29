@@ -6,6 +6,7 @@ var MainLayer = cc.Scene.extend({
 	_round:0,
 	space:null,
 	_roundLayer:null,
+	_listener:null,
 	
 	ctor:function() {
 		this._super();
@@ -52,18 +53,31 @@ var MainLayer = cc.Scene.extend({
 		//this._sdk_init();
 		this.onCollisionCheck();
 		
+		var layerListener = null;
 		if ("touches" in cc.sys.capabilities) {
-			cc.eventManager.addListener({
+			/*cc.eventManager.addListener({
 				event: cc.EventListener.TOUCH_ONE_BY_ONE,
 				onTouchBegan: this._onMainTouchBegan.bind(this),
 				onTouchEnded: this._onMainTouchEnded.bind(this)
-			}, this);
+			}, this);*/
+			layerListener = cc.EventListener.create({
+				event: cc.EventListener.TOUCH_ONE_BY_ONE,
+				onTouchBegan: this._onMainTouchBegan.bind(this),
+				onTouchEnded: this._onMainTouchEnded.bind(this)
+			});
 		} else {
-			cc.eventManager.addListener({
+			/*cc.eventManager.addListener({
 				event: cc.EventListener.MOUSE,
 				onMouseDown: this._onMainMouseDown.bind(this),
 				onMouseUp: this._onMainMouseUp.bind(this)
-			}, this);
+			}, this);*/
+			layerListener = cc.EventListener.create({
+				event: cc.EventListener.MOUSE,
+				onMouseDown: this._onMainMouseDown.bind(this),
+				onMouseUp: this._onMainMouseUp.bind(this)
+			});
+			cc.eventManager.addListener(layerListener, this);
+			this._listener = layerListener;
 		}
 		this.scheduleUpdate();
 		return true;
@@ -149,6 +163,7 @@ var MainLayer = cc.Scene.extend({
 	_onMainMouseDown:function(event) {
 		this._flag = 0;
 		var pos = event.getLocation();
+		cc.log("1111111111111111");
 		var winSize = cc.director.getWinSize();
 		var action = cc.jumpTo(Constants.BALL_JUMP_SECONDS, 
 				cc.p(winSize.width/2, this._ball.y + Constants.BALL_JUMP_DISTANCE), 
@@ -175,24 +190,31 @@ var MainLayer = cc.Scene.extend({
 			var winSize = cc.director.getWinSize();
 			if (this._ball.y < 0 - 10) {
 				//显示错误提示框
-				cc.director.pause();
-				var content = "很遗憾，闯关失败，再接再厉哦！";
-				var dialogLayer = new DialogLayer(this, content);
+				//cc.director.pause();
+				this.removeListener();
+				this.unscheduleUpdate();
+				var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL);
 				this.addChild(dialogLayer, 3);
 			} else if (this._ball.y >= this.height) {
 				//显示成功提示框
-				cc.director.pause();
-				var content = "厉害啊，闯关成功，后面还有更难的，不要骄傲哦！";
-				var dialogLayer = new DialogLayer(this, content);
+				//cc.director.pause();
+				this.removeListener();
+				this.unscheduleUpdate();
+				var dialogLayer = new DialogLayer(this, Constants.ROUND_SUCCESS);
 				this.addChild(dialogLayer, 3);
 			}
 		}
+		return true;
 	},
 	
 	clearLayer:function() {
 		this._roundLayer.clearLayer(this);
 		//this.removeChild(this._ball);
 		//this.removeChild(this._roundLayer);
+	},
+	
+	removeListener:function() {
+		cc.eventManager.removeListener(this._listener);
 	},
 	
 	//更新分数
@@ -263,8 +285,8 @@ var MainLayer = cc.Scene.extend({
 		//有任何的碰撞，游戏失败
 		if (collTypeA >= 1 && collTypeB >= 1) {
 			cc.director.pause();
-			var content = "很遗憾，闯关失败，再接再厉哦！";
-			var dialogLayer = new DialogLayer(this, content);
+			this.removeListener();
+			var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL);
 			this.addChild(dialogLayer, 3);
 		}
 		return true;

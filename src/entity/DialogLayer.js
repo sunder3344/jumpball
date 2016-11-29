@@ -52,6 +52,7 @@ var DialogLayer = cc.LayerColor.extend({
 		//this._gameScene.clearLayer();
 		//this._gameScene = null;
 		//cc.director.purgeDirector();
+		cc.director.resume();
 		cc.director.runScene(new GameScene());
 		//cc.director.pushScene(new GameScene());
 		//cc.director.popScene();
