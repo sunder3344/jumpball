@@ -205,8 +205,8 @@ var MainLayer = cc.Scene.extend({
 	
 	clearLayer:function() {
 		this._roundLayer.clearLayer(this);
-		//this.removeChild(this._ball);
-		//this.removeChild(this._roundLayer);
+		this.removeChild(this._ball);
+		this.removeChild(this._roundLayer);
 	},
 	
 	removeListener:function() {
@@ -279,7 +279,7 @@ var MainLayer = cc.Scene.extend({
 		var collTypeB = shapeB.collision_type;
 		//有任何的碰撞，游戏失败
 		if (collTypeA >= 1 && collTypeB >= 1) {
-			cc.director.pause();
+			//cc.director.pause();
 			this.removeListener();
 			var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL);
 			this.addChild(dialogLayer, 3);
@@ -288,6 +288,7 @@ var MainLayer = cc.Scene.extend({
 	},
 	
 	collisionPre:function(arbiter, space) {
+		//cc.log("collision Pre");
 		return true;
 	},
 	

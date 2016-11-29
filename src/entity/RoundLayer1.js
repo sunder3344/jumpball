@@ -74,12 +74,12 @@ var RoundLayer1 = cc.Layer.extend({
 	
 	//清除层
 	clearLayer:function(gameScene) {
-		/*gameScene.space.removeBody(this._body);
+		gameScene.space.removeBody(this._body);
 		gameScene.space.removeBody(this._body2);
 		gameScene.space.removeShape(this._shape);
-		gameScene.space.removeShape(this._shape2);*/
-		//gameScene.removeChild(this._obs1);
-		//gameScene.removeChild(this._obs2);
+		gameScene.space.removeShape(this._shape2);
+		gameScene.removeChild(this._obs1);
+		gameScene.removeChild(this._obs2);
 	}
 });
 

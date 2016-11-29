@@ -49,13 +49,8 @@ var DialogLayer = cc.LayerColor.extend({
 	//重新开始
 	_retry:function() {
 		//this._gameScene.removeAllChildren();
-		//this._gameScene.clearLayer();
-		//this._gameScene = null;
-		//cc.director.purgeDirector();
-		cc.director.resume();
+		this._gameScene.clearLayer();
 		cc.director.runScene(new GameScene());
-		//cc.director.pushScene(new GameScene());
-		//cc.director.popScene();
 	}
 });
 
