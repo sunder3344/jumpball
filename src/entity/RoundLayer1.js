@@ -5,6 +5,10 @@ var RoundLayer1 = cc.Layer.extend({
 	_obs2:null,
 	_obsCount:2,
 	_gameScene:null,
+	_body:null,
+	_body2:null,
+	_shape:null,
+	_shape2:null,
 	
 	ctor:function() {
 		this._super();
@@ -21,36 +25,36 @@ var RoundLayer1 = cc.Layer.extend({
 	_init:function(gameScene) {
 		var winSize = cc.director.getWinSize();
 		//线段1
-		var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		body.setAngVel(1.0);
-		gameScene.space.addBody(body);
+		this._body = new cp.Body(1, cp.momentForBox(1, 123, 19));
+		this._body.setAngVel(1.0);
+		gameScene.space.addBody(this._body);
 		
-		var shape = new cp.BoxShape(body, 123, 19);
-		shape.setElasticity(0.5);
-		shape.setFriction(0.5);
-		shape.collision_type = 2;
-		gameScene.space.addShape(shape);
+		this._shape = new cp.BoxShape(this._body, 123, 19);
+		this._shape.setElasticity(0.5);
+		this._shape.setFriction(0.5);
+		this._shape.collision_type = 2;
+		gameScene.space.addShape(this._shape);
 		//创建物理引擎精灵对象
 		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
-		this._obs1.setBody(body);
+		this._obs1.setBody(this._body);
 		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH / 2;
 		this._obs1.y = this.y + this.height / 2;
 		gameScene.addChild(this._obs1);
 		
 		//线段2
-		var body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
-		body2.setAngVel(1.4);
-		gameScene.space.addBody(body2);
+		this._body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
+		this._body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
+		this._body2.setAngVel(1.4);
+		gameScene.space.addBody(this._body2);
 		
-		var shape2 = new cp.BoxShape(body2, 123, 19);
-		shape2.setElasticity(0.5);
-		shape2.setFriction(0.5);
-		shape2.collision_type = 3;
-		gameScene.space.addShape(shape2);
+		this._shape2 = new cp.BoxShape(this._body2, 123, 19);
+		this._shape2.setElasticity(0.5);
+		this._shape2.setFriction(0.5);
+		this._shape2.collision_type = 3;
+		gameScene.space.addShape(this._shape2);
 		//创建物理引擎精灵对象
 		this._obs2 = new cc.PhysicsSprite(res.LINE_PNG);
-		this._obs2.setBody(body2);
+		this._obs2.setBody(this._body2);
 		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
 		this._obs2.y = this.y + this.height / 2;
 		gameScene.addChild(this._obs2);
@@ -66,6 +70,16 @@ var RoundLayer1 = cc.Layer.extend({
 		//this._obs1.runAction(seq.repeatForever());
 		//this._obs2.runAction(seq.repeatForever());
 		//this.runAction(seq.repeatForever());
+	},
+	
+	//清除层
+	clearLayer:function(gameScene) {
+		/*gameScene.space.removeBody(this._body);
+		gameScene.space.removeBody(this._body2);
+		gameScene.space.removeShape(this._shape);
+		gameScene.space.removeShape(this._shape2);*/
+		//gameScene.removeChild(this._obs1);
+		//gameScene.removeChild(this._obs2);
 	}
 });
 

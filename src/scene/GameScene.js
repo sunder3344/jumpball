@@ -21,12 +21,13 @@ var MainLayer = cc.Scene.extend({
 		this.addChild(this._ball);
 		
 		//安置关卡
-		this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
+		//this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
+		this._roundLayer = new RoundLayer1();
 		this._roundLayer.x = winSize.width / 2 - (this._roundLayer.width / 2);
 		this._roundLayer.y = winSize.height / 2;
 		this._roundLayer._init(this);
 		this.addChild(this._roundLayer);
-		this._roundLayer.startRotate();
+		//this._roundLayer.startRotate();
 		
 		/*var body = new cp.Body(1, cp.momentForBox(1, 123, 19));
 		body.setAngVel(1.3);			//刚体旋转
@@ -163,6 +164,7 @@ var MainLayer = cc.Scene.extend({
 	update:function() {
 		var timeStep = 0.07;
 		this.space.step(timeStep);
+		cc.log("update");
 		if (this._flag == 1) {
 			var winSize = cc.director.getWinSize();
 			var action = cc.jumpTo(Constants.BALL_FALL_SECONDS, 
@@ -173,15 +175,24 @@ var MainLayer = cc.Scene.extend({
 			var winSize = cc.director.getWinSize();
 			if (this._ball.y < 0 - 10) {
 				//显示错误提示框
-				cc.log("fail");
 				cc.director.pause();
-			}
-			if (this._ball.y >= this.height) {
+				var content = "很遗憾，闯关失败，再接再厉哦！";
+				var dialogLayer = new DialogLayer(this, content);
+				this.addChild(dialogLayer, 3);
+			} else if (this._ball.y >= this.height) {
 				//显示成功提示框
-				cc.log("success");
 				cc.director.pause();
+				var content = "厉害啊，闯关成功，后面还有更难的，不要骄傲哦！";
+				var dialogLayer = new DialogLayer(this, content);
+				this.addChild(dialogLayer, 3);
 			}
 		}
+	},
+	
+	clearLayer:function() {
+		this._roundLayer.clearLayer(this);
+		//this.removeChild(this._ball);
+		//this.removeChild(this._roundLayer);
 	},
 	
 	//更新分数
@@ -197,15 +208,6 @@ var MainLayer = cc.Scene.extend({
 			this._recordText.setString(this._record);
 			Storage.setCurrentHighest(this._record);
 		}
-	},
-	
-	_showDialog:function(content) {
-		//设定结束值
-		this._result = "stop";
-		this._helpBtn.setEnabled(false);
-		this._exitBtn.setEnabled(false);
-		var dialogLayer = new DialogLayer(this, content);
-		this._background.addChild(dialogLayer, 4);
 	},
 	
 	//关闭声音
@@ -261,6 +263,9 @@ var MainLayer = cc.Scene.extend({
 		//有任何的碰撞，游戏失败
 		if (collTypeA >= 1 && collTypeB >= 1) {
 			cc.director.pause();
+			var content = "很遗憾，闯关失败，再接再厉哦！";
+			var dialogLayer = new DialogLayer(this, content);
+			this.addChild(dialogLayer, 3);
 		}
 		return true;
 	},
