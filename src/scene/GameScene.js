@@ -281,6 +281,7 @@ var MainLayer = cc.Scene.extend({
 		if (collTypeA >= 1 && collTypeB >= 1) {
 			//cc.director.pause();
 			this.removeListener();
+			this.unscheduleUpdate();
 			var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL);
 			this.addChild(dialogLayer, 3);
 		}
