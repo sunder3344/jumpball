@@ -12,6 +12,10 @@ var MainLayer = cc.Scene.extend({
 		this._super();
 		this.initPhysics();
 		
+		//获取关卡数据
+		var roundScore = Storage.getCurrentScore(Constants.ROUND_KEY);
+		this._round = roundScore;
+		
 		var winSize = cc.director.getWinSize();
 		this.width = winSize.width;
 		this.height = winSize.height;
@@ -23,7 +27,7 @@ var MainLayer = cc.Scene.extend({
 		
 		//安置关卡
 		//this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
-		this._roundLayer = new RoundLayer1();
+		eval("this._roundLayer = new RoundLayer1()");
 		this._roundLayer.x = winSize.width / 2 - (this._roundLayer.width / 2);
 		this._roundLayer.y = winSize.height / 2;
 		this._roundLayer._init(this);
@@ -194,6 +198,8 @@ var MainLayer = cc.Scene.extend({
 			} else if (this._ball.y >= this.height) {
 				//显示成功提示框
 				//cc.director.pause();
+				//闯关成功，开始下一关
+				Storage.setCurrentScore(Constants.ROUND_KEY, this._round++);
 				this.removeListener();
 				this.unscheduleUpdate();
 				var dialogLayer = new DialogLayer(this, Constants.ROUND_SUCCESS);
