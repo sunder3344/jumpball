@@ -3,5 +3,6 @@ var RoundSetup = {
 	ROUND_NUMBERS : 1,
 	ROUND_ARRAY : [
 		"RoundLayer1",
+		"RoundLayer2",
 	],
 }

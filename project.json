@@ -22,6 +22,7 @@
 		"src/entity/BallSprite.js",
 		"src/entity/DialogLayer.js",
 		"src/entity/RoundLayer1.js",
+		"src/entity/RoundLayer2.js",
 		"src/util/RoundSetup.js"
     ]
 }

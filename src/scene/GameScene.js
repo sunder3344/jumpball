@@ -27,7 +27,6 @@ var MainLayer = cc.Scene.extend({
 		
 		//安置关卡
 		//this._roundLayer = RoundSetup.ROUND_ARRAY[this._round];
-		cc.log(this._round);
 		if (this._round >= RoundSetup.ROUND_ARRAY.length) {			//通关重置回0
 			this._round = 0;
 			Storage.setCurrentScore(Constants.ROUND_KEY, this._round);
