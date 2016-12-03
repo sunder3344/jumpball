@@ -26,7 +26,7 @@ var RoundLayer2 = cc.Layer.extend({
 		var winSize = cc.director.getWinSize();
 		//线段1
 		this._body = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		this._body.setAngVel(1.0);
+		this._body.setAngVel(1.3);
 		gameScene.space.addBody(this._body);
 		
 		this._shape = new cp.BoxShape(this._body, 123, 19);
@@ -38,13 +38,13 @@ var RoundLayer2 = cc.Layer.extend({
 		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs1.setBody(this._body);
 		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH / 2;
-		this._obs1.y = this.y + this.height / 2;
+		this._obs1.y = this.y + this.height /  - 400;
 		gameScene.addChild(this._obs1);
 		
 		//线段2
 		this._body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
 		this._body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
-		this._body2.setAngVel(1.4);
+		this._body2.setAngVel(2.0);
 		gameScene.space.addBody(this._body2);
 		
 		this._shape2 = new cp.BoxShape(this._body2, 123, 19);
@@ -55,8 +55,8 @@ var RoundLayer2 = cc.Layer.extend({
 		//创建物理引擎精灵对象
 		this._obs2 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs2.setBody(this._body2);
-		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH;
-		this._obs2.y = this.y + this.height / 2;
+		this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH / 2;
+		this._obs2.y = this.y + this.height / 2 + 200;
 		gameScene.addChild(this._obs2);
 		
 		//设置锚点

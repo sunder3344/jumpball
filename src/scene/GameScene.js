@@ -7,14 +7,27 @@ var MainLayer = cc.Scene.extend({
 	space:null,
 	_roundLayer:null,
 	_listener:null,
+	_roundText:null,
+	_soundOn:null,				//静音按钮
+	_soundOff:null,
 	
 	ctor:function() {
 		this._super();
 		this.initPhysics();
-		
+
 		//获取关卡数据
 		var roundScore = Storage.getCurrentScore(Constants.ROUND_KEY);
 		this._round = roundScore;
+		
+		//记分牌
+		var roundLabel = new cc.LabelBMFont(Constants.ROUND_LABEL, res.FONT_FNT);
+		this.addChild(roundLabel);
+		roundLabel.x = this.x + 70;
+		roundLabel.y = this.height - 20;
+		this._roundText = new cc.LabelBMFont(this._round + 1, res.FONT_FNT);
+		this.addChild(this._roundText);
+		this._roundText.x = this.x + roundLabel.width + 70;
+		this._roundText.y = this.height - 20;
 		
 		var winSize = cc.director.getWinSize();
 		this.width = winSize.width;
@@ -30,6 +43,7 @@ var MainLayer = cc.Scene.extend({
 		if (this._round >= RoundSetup.ROUND_ARRAY.length) {			//通关重置回0
 			this._round = 0;
 			Storage.setCurrentScore(Constants.ROUND_KEY, this._round);
+			this._roundText.setString(this._record);
 		}
 		var roundLayerName = RoundSetup.ROUND_ARRAY[this._round];
 		eval("this._roundLayer = new " + roundLayerName + "()");
