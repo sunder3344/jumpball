@@ -23,6 +23,7 @@
 		"src/entity/DialogLayer.js",
 		"src/entity/RoundLayer1.js",
 		"src/entity/RoundLayer2.js",
+		"src/entity/RoundLayer3.js",
 		"src/util/RoundSetup.js"
     ]
 }
