@@ -38,13 +38,13 @@ var RoundLayer2 = cc.Layer.extend({
 		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs1.setBody(this._body);
 		this._obs1.x = this.x + this.width / 2 - Constants.GAP_WIDTH / 2;
-		this._obs1.y = this.y + this.height /  - 400;
+		this._obs1.y = this.y + this.height / 2 - 100;
 		gameScene.addChild(this._obs1);
 		
 		//线段2
 		this._body2 = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		this._body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH, this.y + this.height / 2));
-		this._body2.setAngVel(2.0);
+		//this._body2.setPos(cc.p(this.x + this.width / 2 + Constants.GAP_WIDTH / 2, this.y + this.height / 2 + 200));
+		this._body2.setAngVel(-1.2);
 		gameScene.space.addBody(this._body2);
 		
 		this._shape2 = new cp.BoxShape(this._body2, 123, 19);
