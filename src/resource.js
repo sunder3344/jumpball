@@ -4,6 +4,7 @@ var res = {
 	SOUND_OFF : "res/img/sound_off.png",
 	RETRY_PNG : "res/img/retry.png",
 	EXIT_PNG : "res/img/exit.png",
+	KEEY_PNG : "res/img/keep.png",
 	FONT_FNT : "res/fonts/font.fnt",
 	FONT_PNG : "res/fonts/font.png",
 	LINE_PNG : "res/img/line.png"

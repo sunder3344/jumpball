@@ -3,8 +3,9 @@ var DialogLayer = cc.LayerColor.extend({
 	_promptTxt:null,
 	_exitItem:null,
 	_retryItem:null,
+	_keepItem:null,
 	
-	ctor:function(gameScene, content) {
+	ctor:function(gameScene, content, flag = 0) {
 		this._gameScene = gameScene;
 		this._super(cc.color(0, 0, 0, 255));
 		var winSize = cc.director.getWinSize();
@@ -23,8 +24,22 @@ var DialogLayer = cc.LayerColor.extend({
 		this._retryItem = new cc.MenuItemImage(res.RETRY_PNG, res.RETRY_PNG, this._retry, this);
 		this._retryItem.x = winSize.width / 2 + this._exitItem.width / 2 + 150;
 		this._retryItem.y = winSize.height / 2;
-		var menu = new cc.Menu(this._exitItem, this._retryItem);
+		
+		this._keepItem = new cc.MenuItemImage(res.KEEY_PNG, res.KEEY_PNG, this._keep, this);
+		this._keepItem.x = winSize.width / 2 + this._exitItem.width / 2 + 150;
+		this._keepItem.y = winSize.height / 2;
+		
+		var menu = new cc.Menu(this._exitItem, this._retryItem, this._keepItem);
 		this.addChild(menu);
+		
+		//flag:0代表失败，1代表成功
+		if (flag == 0) {
+			this._retryItem.setVisible(true);
+			this._keepItem.setVisible(false);
+		} else if (flag == 1) {
+			this._retryItem.setVisible(false);
+			this._keepItem.setVisible(true);
+		}
 		menu.x = this.x - 150;
 		menu.y = this.y - 100;
 	},
@@ -48,6 +63,13 @@ var DialogLayer = cc.LayerColor.extend({
 	
 	//重新开始
 	_retry:function() {
+		//this._gameScene.removeAllChildren();
+		this._gameScene.clearLayer();
+		cc.director.runScene(new GameScene());
+	},
+	
+	//继续
+	_keep:function() {
 		//this._gameScene.removeAllChildren();
 		this._gameScene.clearLayer();
 		cc.director.runScene(new GameScene());
