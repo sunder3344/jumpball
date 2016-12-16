@@ -43,7 +43,7 @@ var MainLayer = cc.Scene.extend({
 		if (this._round >= RoundSetup.ROUND_ARRAY.length) {			//通关重置回0
 			this._round = 0;
 			Storage.setCurrentScore(Constants.ROUND_KEY, this._round);
-			this._roundText.setString(this._record);
+			this._roundText.setString("1");
 		}
 		var roundLayerName = RoundSetup.ROUND_ARRAY[this._round];
 		eval("this._roundLayer = new " + roundLayerName + "()");
@@ -212,7 +212,7 @@ var MainLayer = cc.Scene.extend({
 				//cc.director.pause();
 				this.removeListener();
 				this.unscheduleUpdate();
-				var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL);
+				var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL, 0);
 				this.addChild(dialogLayer, 3);
 			} else if (this._ball.y >= this.height) {
 				//显示成功提示框
@@ -221,7 +221,11 @@ var MainLayer = cc.Scene.extend({
 				Storage.setCurrentScore(Constants.ROUND_KEY, ++this._round);
 				this.removeListener();
 				this.unscheduleUpdate();
-				var dialogLayer = new DialogLayer(this, Constants.ROUND_SUCCESS);
+				if (this._round == RoundSetup.ROUND_ARRAY.length) {			//已经通关
+					var dialogLayer = new DialogLayer(this, Constants.ROUND_FINISH, 1);
+				} else {
+					var dialogLayer = new DialogLayer(this, Constants.ROUND_SUCCESS, 1);
+				}
 				this.addChild(dialogLayer, 3);
 			}
 		}
@@ -307,7 +311,7 @@ var MainLayer = cc.Scene.extend({
 			//cc.director.pause();
 			this.removeListener();
 			this.unscheduleUpdate();
-			var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL);
+			var dialogLayer = new DialogLayer(this, Constants.ROUND_FAIL, 0);
 			this.addChild(dialogLayer, 3);
 		}
 		return true;

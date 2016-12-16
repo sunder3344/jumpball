@@ -1,4 +1,4 @@
-//第二关，直线来回交叉
+//第三关
 var RoundLayer3 = cc.Layer.extend({
 	_name:"round3",
 	_obs1:null,
@@ -72,6 +72,7 @@ var RoundLayer3 = cc.Layer.extend({
 		gameScene.space.removeBody(this._body);
 		gameScene.space.removeShape(this._shape);
 		gameScene.removeChild(this._obs1);
+		gameScene.removeChild(this._obs2);
 	},
 });
 
