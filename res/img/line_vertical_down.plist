@@ -13,7 +13,7 @@
 			<key>vline</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ 0.52632,1.13821 }</string>
+                <string>{ 0.52632,1.50000 }</string>
                 <key>fixtures</key>
                 <array>
 
@@ -40,10 +40,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 9.00000,-17.00000 }</string>	
-								<string>{ 9.00000,-140.00000 }</string>	
-								<string>{ -10.00000,-140.00000 }</string>	
-								<string>{ -10.00000,-17.00000 }</string>
+								<string>{ 9.00000,-61.50000 }</string>	
+								<string>{ 9.00000,-184.50000 }</string>	
+								<string>{ -10.00000,-184.50000 }</string>	
+								<string>{ -10.00000,-61.50000 }</string>
 							</array>
 						</array>
                         

@@ -31,31 +31,31 @@ var RoundLayer6 = cc.Layer.extend({
 		var winSize = cc.director.getWinSize();
 		//注意：physicsEditor需要用注册版的，否则只能添加10个shape，超过10个shape在cocos中加载全部会报错。
 		var verts_horizontal_left = [
-			-36.90000, 9.00000,
-			-36.90000, -10.00000,
-			-159.90000, -10.00000,
-			-159.90000, 9.00000,
+			-61.50000, 9.00000,
+			-61.50000, -10.00000,
+			-184.50000, -10.00000,
+			-184.50000, 9.00000,
 		];
 		
 		var verts_horizontal_right = [
-			159.90000, 9.00000,
-			159.90000, -10.00000,
-			36.90000, -10.00000,
-			36.90000, 9.00000,
+			184.50000, 9.00000,
+			184.50000, -10.00000,
+			61.50000, -10.00000,
+			61.50000, 9.00000,
 		];
 		
 		var verts_vertical_up = [
-			8.99992, 159.90000,
-			8.99992, 36.90000,
-			-10.00008, 36.90000,
-			-10.00008, 159.90000,
+			9.00000, 184.50000,
+			9.00000, 61.50000,
+			-10.00000, 61.50000,
+			-10.00000, 184.50000,
 		];
 		
 		var verts_vertical_down = [
-			9.00000, -36.90000,
-			9.00000, -159.90000,
-			-10.00000, -159.90000,
-			-10.00000, -36.90000,
+			9.00000, -61.50000,
+			9.00000, -184.50000,
+			-10.00000, -184.50000,
+			-10.00000, -61.50000,
 		];
 		
 		this._body = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_left, cp.vzero));
@@ -69,11 +69,11 @@ var RoundLayer6 = cc.Layer.extend({
 		//创建物理引擎精灵对象
 		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs1.setBody(this._body);
-		this._obs1.x = winSize.width / 2 + 36 - 33;
+		this._obs1.x = winSize.width / 2;
 		this._obs1.y = winSize.height / 2;
 		gameScene.addChild(this._obs1);
 		//设置锚点
-		this._obs1.setAnchorPoint(cc.p(1.30000, 0.52632));
+		this._obs1.setAnchorPoint(cc.p(1.50000, 0.52632));
 		
 		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_right, cp.vzero));
 		this._body2.setAngVel(0.3);
@@ -86,12 +86,12 @@ var RoundLayer6 = cc.Layer.extend({
 		//创建物理引擎精灵对象
 		this._obs2 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs2.setBody(this._body2);
-		this._obs2.x = this.x + this.width / 2 - 36 + 33;
+		this._obs2.x = this.x + this.width / 2;
 		//this._obs2.x = this.x + this.width / 2 + Constants.GAP_WIDTH / 2;
 		this._obs2.y = winSize.height / 2;
 		gameScene.addChild(this._obs2);
 		//设置锚点
-		this._obs2.setAnchorPoint(cc.p(-0.30000, 0.52632));
+		this._obs2.setAnchorPoint(cc.p(-0.50000, 0.52632));
 		
 		//竖状图
 		this._body3 = new cp.Body(1, cp.momentForPoly(1, verts_vertical_up, cp.vzero));
@@ -105,11 +105,11 @@ var RoundLayer6 = cc.Layer.extend({
 		//创建物理引擎精灵对象
 		this._obs3 = new cc.PhysicsSprite(res.V_LINE_PNG);
 		this._obs3.setBody(this._body3);
-		this._obs3.x = this.x + this.width / 2;
+		this._obs3.x = winSize.width / 2;
 		this._obs3.y = winSize.height / 2;
 		gameScene.addChild(this._obs3);
 		//设置锚点
-		this._obs3.setAnchorPoint(cc.p(0.52632, -0.30000));
+		this._obs3.setAnchorPoint(cc.p(0.52632, -0.50000));
 		
 		this._body4 = new cp.Body(1, cp.momentForPoly(1, verts_vertical_down, cp.vzero));
 		this._body4.setAngVel(0.3);
@@ -122,11 +122,11 @@ var RoundLayer6 = cc.Layer.extend({
 		//创建物理引擎精灵对象
 		this._obs4 = new cc.PhysicsSprite(res.V_LINE_PNG);
 		this._obs4.setBody(this._body4);
-		this._obs4.x = this.x + this.width / 2;
-		this._obs4.y = winSize.height / 2 + this.height - 15;
+		this._obs4.x = winSize.width / 2;
+		this._obs4.y = winSize.height / 2;
 		gameScene.addChild(this._obs4);
 		//设置锚点
-		this._obs4.setAnchorPoint(cc.p(0.52632, 1.30000));
+		this._obs4.setAnchorPoint(cc.p(0.52632, 1.50000));
 	},
 	
 	//清除层

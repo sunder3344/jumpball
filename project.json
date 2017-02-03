@@ -27,6 +27,8 @@
 		"src/entity/RoundLayer4.js",
 		"src/entity/RoundLayer5.js",
 		"src/entity/RoundLayer6.js",
+		"src/entity/RoundLayer7.js",
+		"src/entity/RoundLayer8.js",
 		"src/util/RoundSetup.js"
     ]
 }

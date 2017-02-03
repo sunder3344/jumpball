@@ -8,5 +8,7 @@ var RoundSetup = {
 		"RoundLayer4",
 		"RoundLayer5",
 		"RoundLayer6",
+		"RoundLayer7",
+		"RoundLayer8",
 	],
 }
