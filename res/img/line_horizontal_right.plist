@@ -13,7 +13,7 @@
 			<key>line</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ -0.30000,0.52632 }</string>
+                <string>{ -0.50000,0.52632 }</string>
                 <key>fixtures</key>
                 <array>
 
@@ -40,10 +40,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 159.90000,9.00000 }</string>	
-								<string>{ 159.90000,-10.00000 }</string>	
-								<string>{ 36.90000,-10.00000 }</string>	
-								<string>{ 36.90000,9.00000 }</string>
+								<string>{ 184.50000,9.00000 }</string>	
+								<string>{ 184.50000,-10.00000 }</string>	
+								<string>{ 61.50000,-10.00000 }</string>	
+								<string>{ 61.50000,9.00000 }</string>
 							</array>
 						</array>
                         
