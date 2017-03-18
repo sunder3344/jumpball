@@ -92,7 +92,7 @@ var RoundLayer7 = cc.Layer.extend({
 	}
 });
 
-RoundLayer2.create = function() {
+RoundLayer7.create = function() {
 	if (cc.pool.hasObject(RoundLayer7)) {
 		return cc.pool.getFromPool(RoundLayer7);
 	} else {

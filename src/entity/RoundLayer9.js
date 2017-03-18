@@ -1,6 +1,6 @@
-//第五关：一字线
-var RoundLayer5 = cc.Layer.extend({
-	_name:"round5",
+//第五关：一字线(变种版)
+var RoundLayer9 = cc.Layer.extend({
+	_name:"round9",
 	_obs1:null,
 	_obs2:null,
 	_obs3:null,
@@ -45,7 +45,7 @@ var RoundLayer5 = cc.Layer.extend({
 		];
 		
 		this._body = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_left, cp.vzero));
-		this._body.setAngVel(1.2);
+		this._body.setAngVel(1.1);
 		gameScene.space.addBody(this._body);
 		this._shape = new cp.PolyShape(this._body, verts_horizontal_left, cp.vzero);
 		this._shape.setElasticity(0);
@@ -62,7 +62,7 @@ var RoundLayer5 = cc.Layer.extend({
 		this._obs1.setAnchorPoint(cc.p(1.30000,0.52632));
 		
 		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_right, cp.vzero));
-		this._body2.setAngVel(1.2);
+		this._body2.setAngVel(1.1);
 		gameScene.space.addBody(this._body2);
 		this._shape2 = new cp.PolyShape(this._body2, verts_horizontal_right, cp.vzero);
 		this._shape2.setElasticity(0);
@@ -78,6 +78,23 @@ var RoundLayer5 = cc.Layer.extend({
 		gameScene.addChild(this._obs2);
 		//设置锚点
 		this._obs2.setAnchorPoint(cc.p(-0.30000,0.52632));
+		
+		//线段3
+		this._body3 = new cp.Body(1, cp.momentForBox(1, 123, 19));
+		this._body3.setAngVel(1.3);
+		gameScene.space.addBody(this._body3);
+		
+		this._shape3 = new cp.BoxShape(this._body3, 123, 19);
+		this._shape3.setElasticity(0.5);
+		this._shape3.setFriction(0.5);
+		this._shape3.collision_type = 2;
+		gameScene.space.addShape(this._shape3);
+		//创建物理引擎精灵对象
+		this._obs3 = new cc.PhysicsSprite(res.LINE_PNG);
+		this._obs3.setBody(this._body3);
+		this._obs3.x = this.x + this.width / 2 - Constants.GAP_WIDTH / 2;
+		this._obs3.y = this.y + this.height / 2 + 220;
+		gameScene.addChild(this._obs3);
 	},
 	
 	//清除层
@@ -91,10 +108,10 @@ var RoundLayer5 = cc.Layer.extend({
 	},
 });
 
-RoundLayer5.create = function() {
-	if (cc.pool.hasObject(RoundLayer5)) {
-		return cc.pool.getFromPool(RoundLayer5);
+RoundLayer9.create = function() {
+	if (cc.pool.hasObject(RoundLayer9)) {
+		return cc.pool.getFromPool(RoundLayer9);
 	} else {
-		return new RoundLayer5();
+		return new RoundLayer9();
 	}
 }

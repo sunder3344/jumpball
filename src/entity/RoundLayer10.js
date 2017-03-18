@@ -1,20 +1,23 @@
-//第六关：十字线
-var RoundLayer6 = cc.Layer.extend({
-	_name:"round6",
+//第六关：十字线(变种版)
+var RoundLayer10 = cc.Layer.extend({
+	_name:"round10",
 	_obs1:null,
 	_obs2:null,
 	_obs3:null,
 	_obs4:null,
+	_obs5:null,
 	_obsCount:4,
 	_gameScene:null,
 	_body:null,
 	_body2:null,
 	_body3:null,
 	_body4:null,
+	_body5:null,
 	_shape:null,
 	_shape2:null,
 	_shape3:null,
 	_shape4:null,
+	_shape5:null,
 	bodyDefs: null,
 	
 	ctor:function() {
@@ -127,6 +130,23 @@ var RoundLayer6 = cc.Layer.extend({
 		gameScene.addChild(this._obs4);
 		//设置锚点
 		this._obs4.setAnchorPoint(cc.p(0.52632, 1.50000));
+		
+		//线段5
+		this._body5 = new cp.Body(1, cp.momentForBox(1, 123, 19));
+		this._body5.setAngVel(1.15);
+		gameScene.space.addBody(this._body5);
+		
+		this._shape5 = new cp.BoxShape(this._body5, 123, 19);
+		this._shape5.setElasticity(0.5);
+		this._shape5.setFriction(0.5);
+		this._shape5.collision_type = 2;
+		gameScene.space.addShape(this._shape5);
+		//创建物理引擎精灵对象
+		this._obs5 = new cc.PhysicsSprite(res.LINE_PNG);
+		this._obs5.setBody(this._body5);
+		this._obs5.x = this.x + this.width / 2 - Constants.GAP_WIDTH / 2;
+		this._obs5.y = this.y + this.height / 2 + 240;
+		gameScene.addChild(this._obs5);
 	},
 	
 	//清除层
@@ -135,21 +155,24 @@ var RoundLayer6 = cc.Layer.extend({
 		gameScene.space.removeBody(this._body2);
 		gameScene.space.removeBody(this._body3);
 		gameScene.space.removeBody(this._body4);
+		gameScene.space.removeBody(this._body5);
 		gameScene.space.removeShape(this._shape);
 		gameScene.space.removeShape(this._shape2);
 		gameScene.space.removeShape(this._shape3);
 		gameScene.space.removeShape(this._shape4);
+		gameScene.space.removeShape(this._shape5);
 		gameScene.removeChild(this._obs1);
 		gameScene.removeChild(this._obs2);
 		gameScene.removeChild(this._obs3);
 		gameScene.removeChild(this._obs4);
+		gameScene.removeChild(this._obs5);
 	},
 });
 
-RoundLayer6.create = function() {
-	if (cc.pool.hasObject(RoundLayer6)) {
-		return cc.pool.getFromPool(RoundLayer6);
+RoundLayer10.create = function() {
+	if (cc.pool.hasObject(RoundLayer10)) {
+		return cc.pool.getFromPool(RoundLayer10);
 	} else {
-		return new RoundLayer6();
+		return new RoundLayer10();
 	}
 }
