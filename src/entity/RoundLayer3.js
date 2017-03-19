@@ -1,4 +1,4 @@
-//第二关，直线来回交叉
+//第三关
 var RoundLayer3 = cc.Layer.extend({
 	_name:"round3",
 	_obs1:null,
@@ -23,50 +23,48 @@ var RoundLayer3 = cc.Layer.extend({
 	
 	_init:function(gameScene) {
 		var winSize = cc.director.getWinSize();
-		
+		//注意：physicsEditor需要用注册版的，否则只能添加10个shape，超过10个shape在cocos中加载全部会报错。
 		var verts = [
-			[-5.50000, 45.65000,
-			-10.50000, -64.35000,
-			-21.50000, -60.35000,
-			-32.50000, 35.65000,
-			-29.50000, 43.65000],
-			[34.00000, 34.15000,
-			24.00000, -53.85000,
-			20.00000, -62.85000,
-			-10.50000, -64.35000,
-			-5.50000, 45.65000,
-			4.50000, 46.65000,
-			32.50000, 42.65000],
-			[-33.50000, 102.65000,
-			-2.00000, 78.15000,
-			-10.00000, 75.15000,
-			-36.00000, 97.15000],
-			[-2.00000, 78.15000,
-			4.50000, 46.65000,
-			-4.00000, 49.15000,
-			-10.00000, 75.15000],
-			[4.50000, 46.65000,
-			-5.50000, 45.65000,
-			-4.00000, 49.15000],
+			135.30000, 9.50000,
+			135.30000, -9.50000,
+			12.30000, -9.50000,
+			12.30000, 9.50000,
 		];
-		this._body = new cp.Body(1, cp.momentForPoly(1, verts, cp.vzero));
-		this._body.setAngVel(1.3);
-		gameScene.space.addBody(this._body);
 		
+		this._body = new cp.Body(1, cp.momentForPoly(1, verts, cp.vzero));
+		this._body.setAngVel(0.9);
+		gameScene.space.addBody(this._body);
 		this._shape = new cp.PolyShape(this._body, verts, cp.vzero);
-		this._shape.setElasticity(0.5);
-		this._shape.setFriction(0.5);
+		this._shape.setElasticity(0);
+		this._shape.setFriction(0);
 		this._shape.collision_type = 2;
 		gameScene.space.addShape(this._shape);
 		//创建物理引擎精灵对象
-		this._obs1 = new cc.PhysicsSprite(res.DRINK_PNG);
+		this._obs1 = new cc.PhysicsSprite(res.LINE_PNG);
 		this._obs1.setBody(this._body);
-		this._obs1.x = this.x + this.width / 2;
+		this._obs1.x = this.x + this.width / 2 + Constants.GAP_WIDTH + 30;
 		this._obs1.y = this.y + this.height / 2;
 		gameScene.addChild(this._obs1);
+		//设置锚点
+		this._obs1.setAnchorPoint(cc.p(-0.1, 0.5));
+		
+		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts, cp.vzero));
+		this._body2.setAngVel(-1.1);
+		gameScene.space.addBody(this._body2);
+		this._shape2 = new cp.PolyShape(this._body2, verts, cp.vzero);
+		this._shape2.setElasticity(0);
+		this._shape2.setFriction(0);
+		this._shape2.collision_type = 3;
+		gameScene.space.addShape(this._shape2);
+		//创建物理引擎精灵对象
+		this._obs2 = new cc.PhysicsSprite(res.LINE_PNG);
+		this._obs2.setBody(this._body2);
+		this._obs2.x = this.x + this.width / 2 - Constants.GAP_WIDTH - 30;
+		this._obs2.y = this.y + this.height / 2;
+		gameScene.addChild(this._obs2);
 		
 		//设置锚点
-		this.setAnchorPoint(cc.p(0.55063, 0.43005));
+		this._obs2.setAnchorPoint(cc.p(-0.1, 0.5));
 	},
 	
 	//清除层
@@ -74,6 +72,7 @@ var RoundLayer3 = cc.Layer.extend({
 		gameScene.space.removeBody(this._body);
 		gameScene.space.removeShape(this._shape);
 		gameScene.removeChild(this._obs1);
+		gameScene.removeChild(this._obs2);
 	},
 });
 
