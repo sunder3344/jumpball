@@ -4,16 +4,6 @@ var UtilityHelper = {
 		return parseInt(Math.random() * number);
 	},
 	
-	getRandomNum:function() {
-		num = Constants.CARD_2;
-		if (Math.random() > 0.1) {
-			num = Constants.CARD_2;
-		} else {
-			num = Constants.CARD_4;
-		}
-		return num;
-	},
-	
 	logs:function(object, iteration) {
 		if (typeof(object) == "object") {
 			this.objectEach(object);
