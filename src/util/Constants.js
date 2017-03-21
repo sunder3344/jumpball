@@ -14,5 +14,5 @@ var Constants = {
 	ROUND_SUCCESS : "厉害啊，闯关成功，\n后面还有更难的，\n不要骄傲哦！",
 	ROUND_FINISH : "您真是厉害，\n居然通过了所有的关卡。",
 	
-	PHYSICS_DEBUG_NODE_SHOW : true
+	PHYSICS_DEBUG_NODE_SHOW : false
 }

@@ -5,7 +5,7 @@ var DialogLayer = cc.LayerColor.extend({
 	_retryItem:null,
 	_keepItem:null,
 	
-	ctor:function(gameScene, content, flag = 0) {
+	ctor:function(gameScene, content, flag) {
 		this._gameScene = gameScene;
 		this._super(cc.color(0, 0, 0, 255));
 		var winSize = cc.director.getWinSize();
