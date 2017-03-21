@@ -9,10 +9,12 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["actions", "menus", "audio", "labels", "ccpool", "chipmunk"],
+    "modules" : ["actions", "menus", "labels", "ccpool", "chipmunk"],
 
     "jsList" : [
         "src/resource.js",
+        "src/anysdk/jsb_anysdk.js",
+		"src/anysdk/jsb_anysdk_constants.js",
 		"src/util/Constants.js",
         "src/scene/GameScene.js",
 		"src/util/Anysdk.js",

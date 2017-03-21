@@ -10,6 +10,9 @@ var MainLayer = cc.Scene.extend({
 	_roundText:null,
 	_soundOn:null,				//静音按钮
 	_soundOff:null,
+	_agent:null,
+	_ads_plugin:null,
+	_analytics_plugin:null,
 	
 	ctor:function() {
 		this._super();
@@ -73,7 +76,7 @@ var MainLayer = cc.Scene.extend({
 		var seq = cc.sequence(actionBy);
 		obs.runAction(cc.sequence(new cc.RotateBy(3, 360)).repeatForever());*/
 		
-		//this._sdk_init();
+		this._sdk_init();
 		this.onCollisionCheck();
 		
 		var layerListener = null;
