@@ -1,8 +1,8 @@
 var Anysdk = {
 	//注意：这里 appKey, appSecret, privateKey，要替换成自己打包工具里面的值(登录打包工具，游戏管理界面上显示的那三个参数)。
-	appKey : "E0CC2770-DB8E-F416-7358-7173732331DF",
-	appSecret : "9c96c3c5e274ef05e5159ced456741d3",
-	privateKey : "76F4F9CECD0BFD289407E964D8062289",
+	appKey : "0E4CA189-51ED-2D40-2F10-6B3B8ADA93B4",
+	appSecret : "d3a6eb2b18c4680c05c00fbaa4d56022",
+	privateKey : "E313A4F9031BD9C4725440373D408CBA",
 	oauthLoginServer : "http://oauth.anysdk.com/api/OauthLoginDemo/Login.php",
 	agent : null,
 

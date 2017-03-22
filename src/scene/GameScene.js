@@ -18,6 +18,9 @@ var MainLayer = cc.Scene.extend({
 		this._super();
 		this.initPhysics();
 
+		var winSize = cc.director.getWinSize();
+		this.width = winSize.width;
+		this.height = winSize.height;
 		//获取关卡数据
 		var roundScore = Storage.getCurrentScore(Constants.ROUND_KEY);
 		this._round = roundScore;
@@ -25,16 +28,13 @@ var MainLayer = cc.Scene.extend({
 		//记分牌
 		var roundLabel = new cc.LabelBMFont(Constants.ROUND_LABEL, res.FONT_FNT);
 		this.addChild(roundLabel);
-		roundLabel.x = this.x + 70;
-		roundLabel.y = this.height - 20;
+		roundLabel.x = this.x + 100;
+		roundLabel.y = this.height - 100;
 		this._roundText = new cc.LabelBMFont(this._round + 1, res.FONT_FNT);
 		this.addChild(this._roundText);
-		this._roundText.x = this.x + roundLabel.width + 70;
-		this._roundText.y = this.height - 20;
-		
-		var winSize = cc.director.getWinSize();
-		this.width = winSize.width;
-		this.height = winSize.height;
+		this._roundText.x = this.x + roundLabel.width + 100;
+		this._roundText.y = this.height - 100;
+
 		//弹射的小球
 		this._ball = BallSprite.create(this);
 		this._ball.x = winSize.width / 2;
@@ -76,7 +76,9 @@ var MainLayer = cc.Scene.extend({
 		var seq = cc.sequence(actionBy);
 		obs.runAction(cc.sequence(new cc.RotateBy(3, 360)).repeatForever());*/
 		
-		this._sdk_init();
+		if (this._round == 0) {			//只在第一关显示
+			this._sdk_init();
+		}
 		this.onCollisionCheck();
 		
 		var layerListener = null;

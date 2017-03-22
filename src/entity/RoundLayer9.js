@@ -45,7 +45,7 @@ var RoundLayer9 = cc.Layer.extend({
 		];
 		
 		this._body = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_left, cp.vzero));
-		this._body.setAngVel(1.1);
+		this._body.setAngVel(0.8);
 		gameScene.space.addBody(this._body);
 		this._shape = new cp.PolyShape(this._body, verts_horizontal_left, cp.vzero);
 		this._shape.setElasticity(0);
@@ -62,7 +62,7 @@ var RoundLayer9 = cc.Layer.extend({
 		this._obs1.setAnchorPoint(cc.p(1.30000,0.52632));
 		
 		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_right, cp.vzero));
-		this._body2.setAngVel(1.1);
+		this._body2.setAngVel(0.8);
 		gameScene.space.addBody(this._body2);
 		this._shape2 = new cp.PolyShape(this._body2, verts_horizontal_right, cp.vzero);
 		this._shape2.setElasticity(0);
@@ -81,7 +81,7 @@ var RoundLayer9 = cc.Layer.extend({
 		
 		//线段3
 		this._body3 = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		this._body3.setAngVel(1.3);
+		this._body3.setAngVel(1.2);
 		gameScene.space.addBody(this._body3);
 		
 		this._shape3 = new cp.BoxShape(this._body3, 123, 19);

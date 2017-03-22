@@ -1,4 +1,4 @@
-//第一关，直线旋转
+//第八关，直线旋转
 var RoundLayer8 = cc.Layer.extend({
 	_name:"round8",
 	_obs1:null,

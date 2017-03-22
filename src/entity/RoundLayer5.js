@@ -45,7 +45,7 @@ var RoundLayer5 = cc.Layer.extend({
 		];
 		
 		this._body = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_left, cp.vzero));
-		this._body.setAngVel(1.2);
+		this._body.setAngVel(0.8);
 		gameScene.space.addBody(this._body);
 		this._shape = new cp.PolyShape(this._body, verts_horizontal_left, cp.vzero);
 		this._shape.setElasticity(0);
@@ -62,7 +62,7 @@ var RoundLayer5 = cc.Layer.extend({
 		this._obs1.setAnchorPoint(cc.p(1.30000,0.52632));
 		
 		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_right, cp.vzero));
-		this._body2.setAngVel(1.2);
+		this._body2.setAngVel(0.8);
 		gameScene.space.addBody(this._body2);
 		this._shape2 = new cp.PolyShape(this._body2, verts_horizontal_right, cp.vzero);
 		this._shape2.setElasticity(0);

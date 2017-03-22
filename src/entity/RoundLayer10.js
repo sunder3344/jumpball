@@ -62,7 +62,7 @@ var RoundLayer10 = cc.Layer.extend({
 		];
 		
 		this._body = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_left, cp.vzero));
-		this._body.setAngVel(0.65);
+		this._body.setAngVel(0.45);
 		gameScene.space.addBody(this._body);
 		this._shape = new cp.PolyShape(this._body, verts_horizontal_left, cp.vzero);
 		this._shape.setElasticity(0);
@@ -79,7 +79,7 @@ var RoundLayer10 = cc.Layer.extend({
 		this._obs1.setAnchorPoint(cc.p(1.50000, 0.52632));
 		
 		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_right, cp.vzero));
-		this._body2.setAngVel(0.65);
+		this._body2.setAngVel(0.45);
 		gameScene.space.addBody(this._body2);
 		this._shape2 = new cp.PolyShape(this._body2, verts_horizontal_right, cp.vzero);
 		this._shape2.setElasticity(0);
@@ -98,7 +98,7 @@ var RoundLayer10 = cc.Layer.extend({
 		
 		//竖状图
 		this._body3 = new cp.Body(1, cp.momentForPoly(1, verts_vertical_up, cp.vzero));
-		this._body3.setAngVel(0.65);
+		this._body3.setAngVel(0.45);
 		gameScene.space.addBody(this._body3);
 		this._shape3 = new cp.PolyShape(this._body3, verts_vertical_up, cp.vzero);
 		this._shape3.setElasticity(0);
@@ -115,7 +115,7 @@ var RoundLayer10 = cc.Layer.extend({
 		this._obs3.setAnchorPoint(cc.p(0.52632, -0.50000));
 		
 		this._body4 = new cp.Body(1, cp.momentForPoly(1, verts_vertical_down, cp.vzero));
-		this._body4.setAngVel(0.65);
+		this._body4.setAngVel(0.45);
 		gameScene.space.addBody(this._body4);
 		this._shape4 = new cp.PolyShape(this._body4, verts_vertical_down, cp.vzero);
 		this._shape4.setElasticity(0);
@@ -133,7 +133,7 @@ var RoundLayer10 = cc.Layer.extend({
 		
 		//线段5
 		this._body5 = new cp.Body(1, cp.momentForBox(1, 123, 19));
-		this._body5.setAngVel(1.15);
+		this._body5.setAngVel(1.0);
 		gameScene.space.addBody(this._body5);
 		
 		this._shape5 = new cp.BoxShape(this._body5, 123, 19);

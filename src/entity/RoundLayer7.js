@@ -49,10 +49,8 @@ var RoundLayer7 = cc.Layer.extend({
 		gameScene.addChild(this._obs1);
 		
 		//线段2
-
-		
 		this._body2 = new cp.Body(1, cp.momentForPoly(1, verts_horizontal_right, cp.vzero));
-		this._body2.setAngVel(-1.8);
+		this._body2.setAngVel(-1.6);
 		gameScene.space.addBody(this._body2);
 		this._shape2 = new cp.PolyShape(this._body2, verts_horizontal_right, cp.vzero);
 		this._shape2.setElasticity(0);
