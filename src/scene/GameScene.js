@@ -79,6 +79,7 @@ var MainLayer = cc.Scene.extend({
 		if (this._round == 0) {			//只在第一关显示
 			this._sdk_init();
 		}
+		this._analytics_init();
 		this.onCollisionCheck();
 		
 		var layerListener = null;
@@ -158,6 +159,12 @@ var MainLayer = cc.Scene.extend({
 		this._agent = Anysdk._init();
 		this._ads_plugin = this._agent.getAdsPlugin();
 		this._ads_plugin.showAds(AdsType.AD_TYPE_BANNER);			//显示banner广告
+		//this._analytics_plugin = this._agent.getAnalyticsPlugin();
+		//this._analytics_plugin.startSession();
+		//this._analytics_plugin.setCaptureUncaughtException(true);			//收集应用错误日志
+	},
+	
+	_analytics_init:function() {
 		this._analytics_plugin = this._agent.getAnalyticsPlugin();
 		this._analytics_plugin.startSession();
 		this._analytics_plugin.setCaptureUncaughtException(true);			//收集应用错误日志
